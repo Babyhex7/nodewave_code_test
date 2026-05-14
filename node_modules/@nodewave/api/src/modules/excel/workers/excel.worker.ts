@@ -10,7 +10,7 @@ export const initExcelWorker = () => {
   fileQueue.process(async (job) => {
     const { fileId, filePath } = job.data;
     console.log(`Processing job for file: ${fileId}`);
-    
+
     return await excelService.processFile(fileId, filePath);
   });
 

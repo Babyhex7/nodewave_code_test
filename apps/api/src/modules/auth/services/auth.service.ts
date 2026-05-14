@@ -25,7 +25,7 @@ export class AuthService {
       password: hashedPassword,
     });
 
-    const { password, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
     return userWithoutPassword;
   }
 
@@ -43,10 +43,10 @@ export class AuthService {
     const token = jwt.sign(
       { id: user.id, email: user.email, name: user.name },
       config.jwt.secret as string,
-      { expiresIn: config.jwt.expiresIn as any }
+      { expiresIn: config.jwt.expiresIn as any },
     );
 
-    const { password, ...userWithoutPassword } = user;
+    const { password: _password, ...userWithoutPassword } = user;
     return {
       user: userWithoutPassword,
       token,

@@ -37,28 +37,23 @@ export class ExcelService {
       });
 
       // 4. Update status ke SUCCESS
-      await this.uploadRepository.updateStatus(
-        fileId, 
-        FileStatus.SUCCESS, 
-        undefined, 
-        new Date()
-      );
+      await this.uploadRepository.updateStatus(fileId, FileStatus.SUCCESS, undefined, new Date());
 
       // Update metadata data dengan jumlah row
       await prisma.fileUpload.update({
         where: { id: fileId },
         data: {
-          data: { count: products.length }
-        }
+          data: { count: products.length },
+        },
       });
 
       return { success: true, count: products.length };
     } catch (error: any) {
       console.error(`Error processing file ${fileId}:`, error);
-      
+
       // 5. Update status ke FAILED
       await this.uploadRepository.updateStatus(fileId, FileStatus.FAILED, error.message);
-      
+
       throw error;
     }
   }

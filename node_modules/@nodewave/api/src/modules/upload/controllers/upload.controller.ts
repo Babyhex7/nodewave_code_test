@@ -18,12 +18,17 @@ export class UploadController {
       const user = (req as any).user;
       const result = await this.service.processUpload(user.id, req.file);
 
-      return successResponse(res, {
-        fileId: result.id,
-        status: result.status,
-        message: 'File queued for processing',
-        checkStatusUrl: `/api/files/${result.id}/status`
-      }, 'Upload success', 202);
+      return successResponse(
+        res,
+        {
+          fileId: result.id,
+          status: result.status,
+          message: 'File queued for processing',
+          checkStatusUrl: `/api/files/${result.id}/status`,
+        },
+        'Upload success',
+        202,
+      );
     } catch (error) {
       next(error);
     }

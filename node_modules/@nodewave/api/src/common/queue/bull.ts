@@ -16,5 +16,5 @@ export const fileQueue = new Queue('excel-processing', {
     },
     removeOnComplete: 100,
     removeOnFail: 100,
-  }
+  },
 });

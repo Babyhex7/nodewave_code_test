@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-import path from 'path';
 
 // Load .env
 dotenv.config();
@@ -24,5 +23,5 @@ export const config = {
   log: {
     level: process.env.LOG_LEVEL || 'debug',
     dir: process.env.LOG_DIR || './logs',
-  }
+  },
 };

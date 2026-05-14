@@ -24,9 +24,9 @@ export class UploadRepository {
   async incrementRetry(id: string) {
     return prisma.fileUpload.update({
       where: { id },
-      data: { 
+      data: {
         retryCount: { increment: 1 },
-        status: FileStatus.PENDING 
+        status: FileStatus.PENDING,
       },
     });
   }
